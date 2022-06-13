@@ -15,20 +15,15 @@ public class HomeWork {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
     }
-
     @BeforeEach
     void setMod () {
         open ("/text-box");
     }
-
-
-
     @CsvSource (value = {
             "Anna Petrova | anna@test.ru",
             "Maria Ivanova | maria@test.ru"
     },
     delimiter = '|')
-
     @ParameterizedTest(name="Проверка заполнения формы {0}")
     void paramFillForm(String fullName, String userEmail) {
         $("#userName").setValue(fullName); // Name
@@ -38,19 +33,14 @@ public class HomeWork {
                 text(fullName),
                 text(userEmail));
     }
-
     @Disabled
     @Test
     void fillFormTest () {
         String fullName = "Julia Podolko";
         String userEmail = "Julia@yandex.ru";
-
-
         $("#userName").setValue(fullName); // Name
         $("#userEmail").setValue(userEmail); // Электронная почта
-
         $("#submit").click();
-
         $("#output").shouldHave(
                 text(fullName),
                 text(userEmail));
@@ -59,6 +49,4 @@ public class HomeWork {
     void close(){
         Selenide.closeWebDriver();
     }
-
-
 }
